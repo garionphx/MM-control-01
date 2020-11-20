@@ -7,6 +7,7 @@
 #include <avr/pgmspace.h>
 #include "pins.h"
 #include "config.h"
+#include "uart.h"
 
 #define TMC2130_CS_0 //signal d5  - PC6
 #define TMC2130_CS_1 //signal d6  - PD7
@@ -361,6 +362,25 @@ uint8_t tmc2130_read_gstat()
         uint32_t result;
         tmc2130_rd(axis, TMC2130_REG_GSTAT, &result);
         if (result & 0x7) retval += (1 << axis);
+
+        if (result & 0x7)
+        {
+            char ts[128];
+
+            // Do we need to read the DRV_STATUS?
+            if(result & 0x2)
+            {
+                uint32_t val32 = 0;
+                tmc2130_rd(axis, TMC2130_REG_DRV_STATUS, &val32);
+                snprintf(ts, sizeof(ts), "%d: %02lx %08lx", axis, (result & 0x7), val32);
+            }
+            else
+            {
+                snprintf(ts, sizeof(ts), "%d: %02lx", axis, (result & 0x7));
+            }
+            usbOut(ts);
+        }
     }
+
     return retval;
 }

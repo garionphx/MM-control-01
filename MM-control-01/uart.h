@@ -17,5 +17,15 @@ extern void uart0_init(void);
 
 extern void uart1_init(void);
 
+#if defined(__cplusplus)
+extern "C" {
+#endif //defined(__cplusplus)
+
+void usbOut(char const * const outstr);
+
+#if defined(__cplusplus)
+}
+#endif //defined(__cplusplus)
+
 
 #endif //_UART_H

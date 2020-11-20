@@ -60,10 +60,10 @@ set(SOURCES
 	MM-control-01/motion.cpp
 	MM-control-01/stepper.cpp
 	MM-control-01/main.cpp
+	MM-control-01/uart.cpp
 	MM-control-01/tmc2130.c
 	MM-control-01/permanent_storage.cpp
 	MM-control-01/Buttons.cpp
-	MM-control-01/uart.cpp
 	MM-control-01/shr16.c
 	MM-control-01/mmctl.cpp
 	core/abi.cpp

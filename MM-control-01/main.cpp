@@ -297,6 +297,7 @@ void setup()
 
 	if (digitalRead(A1) == 1) isFilamentLoaded = true;
 
+    Serial.begin(57600);
 }
 
 
